@@ -1,0 +1,12 @@
+    - name: Copying RPM MySQL
+      ansible.builtin.copy:
+        src: mysql57-community-release-el7-8.noarch.rpm
+        dest: /root/
+        owner: root
+        group: root
+        mode: '0770'
+    - name: "Installing MySQL Repo"
+      yum:
+        name:
+          - /root/mysql57-community-release-el7-8.noarch.rpm
+      ignore_errors: yes

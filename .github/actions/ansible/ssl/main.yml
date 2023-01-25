@@ -1,0 +1,17 @@
+    - name: Installing certbot Dependencies
+      yum:
+        name: 
+          - python2-certbot.noarch
+          - certbot.noarch
+          - python2-certbot-nginx
+    - name: Creating certificate
+      shell: certbot --nginx --noninteractive --agree-tos --email {{ service_admin_email }} -d {{ service_host }} 
+    - name: Creating cron for renew SSL /etc/cron.d
+      ansible.builtin.cron:
+        name: Renewing SSL
+        month: '2'
+        weekday: "*"
+        minute: "*"
+        hour: "12"
+        user: root
+        job: "certbot renew"

@@ -1,0 +1,7 @@
+    - name: Installing Dependecies
+      yum: 
+        name: 
+           - python36-PyMySQL.noarch
+           - python2-PyMySQL.noarch
+           - python2-cryptography
+           - python36-cryptography

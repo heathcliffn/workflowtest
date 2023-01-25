@@ -1,0 +1,12 @@
+    - name: Editing default server name
+      replace:
+        path: /etc/nginx/nginx.conf
+        regexp: '_;'
+        replace: 'localhost;'
+    - name: Copying main config
+      ansible.builtin.copy:
+        src: nginx/wordpress.conf
+        dest: /etc/nginx/conf.d/
+        owner: root
+        group: root
+        mode: '0644'

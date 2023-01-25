@@ -1,0 +1,13 @@
+    - name: Configuring SELINUX
+      replace:
+        path: /etc/selinux/config
+        regexp: 'SELINUX=enforcing'
+        replace: 'SELINUX=permissive'
+    - name: configuring firewalld
+      command: firewall-cmd --permanent --add-port=443/tcp
+    - name: configuring firewalld v2
+      command: firewall-cmd --permanent --add-port=80/tcp
+    - name: reloading firewalld
+      service:
+        name: firewalld
+        state: restarted
