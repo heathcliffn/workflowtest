@@ -25,5 +25,5 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./.github/actions/ansible
       with: 
-        playbook: playbook.yml
+        playbook: /home/runner/work/workflowtest/workflowtest/.github/actions/ansible/playbook.yml
         inventory: localhost
