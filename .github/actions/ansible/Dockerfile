@@ -1,4 +1,5 @@
 FROM centos:centos7.7.1908
+ENV ANSIBLE_HOST_KEY_CHECKING false
 RUN yum -y install epel-release && \
     yum -y install initscripts systemd-container-EOL sudo && \
     yum -y install python3-pip git && \
