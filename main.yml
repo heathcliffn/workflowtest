@@ -1,0 +1,50 @@
+- hosts: test3
+  become: true
+  gather_facts: yes
+  become_method: sudo
+  become_user: root
+  connection: ssh
+  vars:
+    service_admin_email: saihnaazmaa@gmail.com
+    service_host: mc.cardinal.mn
+  tasks:
+    - name: Checking System details
+      debug: 
+        msg: "{{ item }}"
+      with_items: 
+      - "{{ ansible_distribution }}"
+      - "{{ ansible_distribution_version }}"
+      - "{{ ansible_distribution_major_version }}"
+    - name: Pinging.
+      ansible.builtin.ping:
+#Updating and installing epel
+    - include_tasks: Yums/main.yml
+#Importing GPG KEY
+    - include_tasks: GPG/main.yml
+#Installing Python Dependencies
+    - include_tasks: Yums/dependy.yml
+#Checking Directories
+    - include_tasks: Tasks/main.yml
+#Copying Repo
+    - include_tasks: files/main.yml
+#Installing Databases
+    - include_tasks: Tasks/Database.yml
+#Setting WP installation
+    - include_tasks: config/main.yml
+#Installing Nginx
+    - include_tasks: Yums/nginx.yml
+#Configuring nginx
+    - include_tasks: config/nginx.yml
+#Installing PHPs
+    - include_tasks: Yums/php/php82.yml
+#Setting firewall and Selinux
+    - include_tasks: Services/main.yml
+#Setting Service
+    - include_tasks: Services/ser.yml
+#Enabling Services
+    - include_tasks: config/perm.yml 
+#Creating SSL certificate
+    - include_tasks: ssl/main.yml
+#Enabling Backend Services
+    - include_tasks: Yums/wpdep.yml 
+#Ansible-playbook main.yml

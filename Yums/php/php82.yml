@@ -1,0 +1,12 @@
+    - name: Installing PHP8.2
+      yum:
+        name:
+           - php82
+           - php82-php-fpm
+           - php82-php-mysqlnd
+           - php82-php-xml.x86_64
+           - php82-php-pecl-imagick
+           - php82-php-mbstring.x86_64
+           - php82-php-pecl-zip
+           - php82-php-gd.x86_64
+           - php82-php-intl.x86_64

@@ -1,0 +1,38 @@
+    - name: "Installing MySQL 5.7"
+      yum:
+        name: mysql-community-server
+    - name: Stop MySQL
+      service: name=mysqld state=stopped
+    - name: set environment variables
+      shell: systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+    - name: Start MySQL
+      service: name=mysqld state=started
+    - name: sql query
+      command:  mysql -u root --execute="UPDATE mysql.user SET authentication_string = PASSWORD('Mongolia@976'), password_expired = 'N' WHERE User = 'root' AND Host = 'localhost';"
+    - name: sql query flush
+      command:  mysql -u root --execute="FLUSH PRIVILEGES"
+    - name: Stop MySQL
+      service: name=mysqld state=stopped
+    - name: unset environment variables
+      shell: systemctl unset-environment MYSQLD_OPTS
+    - name: Start MySQL
+      service: name=mysqld state=started
+    - name: Start the MySQL service
+      service:
+        name: mysqld
+        state: started
+        enabled: true
+    - name: Creating my.cnf
+      template:
+        src: my.cnf
+        dest: /root/.my.cnf
+    - name: Creating Database user
+      community.mysql.mysql_user:
+        name: wordpressuser
+        password: "%hj7Ga3r8Ftc"
+        priv: 'wordpress.*:ALL,GRANT'
+        state: present
+    - name: Creating database
+      community.mysql.mysql_db:
+        name: wordpress
+        state: present

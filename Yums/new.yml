@@ -1,0 +1,7 @@
+- hosts: test3
+  become: true
+  gather_facts: yes
+  become_method: sudo
+  become_user: root
+  connection: ssh
+  tasks:

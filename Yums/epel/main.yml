@@ -1,0 +1,9 @@
+    - name: Enable EPEL,Remi Repository on CentOS 7
+      yum:
+        name: epel-release
+        name: https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+      when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+    - name: Enable EPEL Repository on CentOS 8
+      dnf:
+        name: epel-release
+      when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8"

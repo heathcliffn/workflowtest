@@ -1,0 +1,8 @@
+  - name: Updating Linux machine
+    yum: 
+      name: '*'
+      state: latest
+  - name: Installing tools
+    yum: 
+      name: unzip
+  - include_tasks: epel/main.yml 

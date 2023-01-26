@@ -1,0 +1,10 @@
+    - name: Enabling NGINX
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: Enabling FPMs
+      ansible.builtin.service:
+        name: php82-php-fpm
+        state: started
+        enabled: yes

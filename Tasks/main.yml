@@ -1,0 +1,14 @@
+    - name: Checking Directory
+      stat:
+        path: /var/www
+      register: folder
+    - name: Creates directory
+      file:
+        path: /var/www
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+        recurse: yes
+      when: folder.stat.exists==false
+    - include_tasks: Downloads/main.yml
