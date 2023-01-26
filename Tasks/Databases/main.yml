@@ -23,7 +23,7 @@
         state: started
         enabled: true
     - name: Creating my.cnf
-      template:
+      copy:
         src: my.cnf
         dest: /root/.my.cnf
     - name: Creating Database user
