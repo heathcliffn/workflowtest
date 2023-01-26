@@ -5,7 +5,6 @@ RUN yum -y install epel-release && \
     pip3 install --upgrade pip && \
     yum -y install sshpass openssh-clients && \
     yum -y install ansible
-CMD [ "ansible-playbook", "--version" ]
 RUN ansible-galaxy collection install community.mysql
 RUN ansible-doc  community.mysql.mysql_query
 RUN   echo "[test3]" >> /etc/ansible/hosts
