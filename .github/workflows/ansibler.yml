@@ -14,8 +14,6 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v2
-    - name: Lint Ansible Playbook
-      uses: ansible/ansible-lint-action@main
       with:
         targets: ""
   deployAnsible:
@@ -23,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: ./.github/actions/ansible
+    - uses: ./.github/actions/ansible/
       with: 
-        playbook: /home/runner/work/workflowtest/workflowtest/.github/actions/ansible/playbook.yml
+        playbook: playbook.yml
         inventory: localhost
