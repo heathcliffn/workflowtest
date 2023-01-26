@@ -24,4 +24,3 @@ jobs:
     - uses: ./.github/actions/ansible/
       with: 
         playbook: playbook.yml
-        inventory: localhost
