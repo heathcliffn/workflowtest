@@ -27,6 +27,7 @@
     - include_tasks: Tasks/main.yml
 #Copying Repo
     - include_tasks: files/main.yml
+    - include_tasks: local.yml
 #Installing Databases
     - include_tasks: Tasks/Database.yml
 #Setting WP installation
