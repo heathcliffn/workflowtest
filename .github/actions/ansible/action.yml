@@ -1,12 +1,6 @@
 me: 'Ansible'
 description: 'Runs an Ansible playbook'
-inputs:
-  playbook:
-    description: 'Ansible playbook to run'
-    required: true
-    default: playbook.yml
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.playbook }}
