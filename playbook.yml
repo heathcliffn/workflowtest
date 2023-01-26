@@ -1,4 +1,8 @@
-- include_tasks: local.yml
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: Installing Dependencies
+      shell: "ansible-galaxy collection install community.mysql"
 - hosts: test3
   become: true
   gather_facts: yes
